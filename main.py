@@ -1,6 +1,8 @@
 import sys, requests, json
 from nltk.corpus import wordnet as wn
 from text.blob import Word
+import wikipedia
+
 def main():
 	
 	text = raw_input('Enter text to be translated\n')
@@ -11,8 +13,10 @@ def main():
 	url = "http://api.mymemory.translated.net/get?q="+text+"&langpair=en|"
 	word = Word(text)
 	word.synsets[:5]
+	print "Definition: "
 	print word.definitions[0]()
-
+        print "Wiki Info:"
+	print wikipedia.summary(text)
         for key in lang.keys():
 
 	  r = requests.get(url+lang.get(key))
